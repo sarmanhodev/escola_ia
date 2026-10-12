@@ -297,6 +297,39 @@ O EscolaIA é um **projeto demonstrativo de portfólio**, desenvolvido para expl
 
 Não se destina ao uso institucional com dados reais de estudantes sem adaptações adicionais de segurança, autenticação, autorização e proteção de dados.
 
+## 🖥️ Demonstração do Sistema
+
+### 📊 Visão geral
+Indicadores de alunos, turmas, notas lançadas e médias abaixo do valor de referência.
+
+![Visão geral do EscolaIA](docs/images/visao-geral.png)
+
+### 👨‍🎓 Gestão de alunos
+Cadastro, pesquisa e gerenciamento de alunos.
+
+![Gestão de alunos](docs/images/alunos.png)
+
+### 🏫 Turmas
+Cadastro e distribuição de alunos por turma.
+
+![Gerenciamento de turmas](docs/images/turmas.png)
+
+### 📝 Notas
+Lançamento e atualização de notas por disciplina e bimestre.
+
+![Controle de notas](docs/images/notas.png)
+
+### 📅 Frequência
+Registro de presenças e faltas.
+
+![Controle de frequência](docs/images/frequencia.png)
+
+### 🤖 Assistente IA
+Interface de chat com integração local ao Qwen3 via Ollama.
+
+![Assistente IA do EscolaIA](docs/images/assistente-ia.png)
+
+
 ## 👨‍💻 Desenvolvedor
 
 **Diego Sarmanho**
