@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EscolaIA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ url_for('index') }}">🎓 EscolaIA</a>
+        <button class="navbar-toggler" type="button" aria-label="Alternar navegação" data-bs-toggle="collapse" data-bs-target="#menu"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="menu">
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="{{ url_for('index') }}">Dashboard</a>
+                <a class="nav-link" href="{{ url_for('alunos') }}">Alunos</a>
+                <a class="nav-link" href="{{ url_for('turmas') }}">Turmas</a>
+                <a class="nav-link" href="{{ url_for('notas') }}">Notas</a>
+                <a class="nav-link" href="{{ url_for('frequencia') }}">Frequência</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container-fluid py-4">
+        <div class="container">
+            <div class="mb-4">
+                <h2>{% block titulo %}{% endblock %}</h2>
+                <p class="text-muted">Protótipo local de gestão escolar</p>
+            </div>
+            <div id="containerMensagensSistema" aria-live="polite">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for categoria, mensagem in messages %}
+                        <div class="alert alert-{{ categoria }} alert-dismissible fade show alertaSistema" role="alert" data-tempo="4000">
+                            <span>{{ mensagem }}</span>
+                            <button type="button" class="btn-close btnFecharAlerta" data-bs-dismiss="alert" aria-label="Fechar mensagem"></button>
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+            {% block conteudo %}{% endblock %}
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/marked.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/purify.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mfunctions.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mscripts.js') }}"></script>
+</body>
+</html>

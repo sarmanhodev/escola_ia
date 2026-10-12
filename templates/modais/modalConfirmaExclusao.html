@@ -1,0 +1,60 @@
+<div class="modal fade" id="modalConfirmarExclusaoAluno"
+     tabindex="-1" aria-labelledby="tituloModalExclusaoAluno"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-exclusao-aluno">
+
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="tituloModalExclusaoAluno">
+                    Confirmar exclusão
+                </h5>
+
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+            </div>
+
+            <div class="modal-body text-center py-4">
+
+                <div class="icone-exclusao-aluno mx-auto mb-3">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
+                <h5 class="fw-bold mb-2">
+                    Deseja realmente excluir este aluno?
+                </h5>
+
+                <p class="text-muted mb-3">
+                    Você está prestes a excluir
+                    <strong id="nomeAlunoExclusao"></strong>.
+                </p>
+
+                <div class="alert alert-warning text-start mb-0">
+                    Esta operação também removerá os registros
+                    de notas e frequência vinculados ao aluno.
+                    <strong>Esta ação não poderá ser desfeita.</strong>
+                </div>
+
+            </div>
+
+            <div class="modal-footer border-0 pt-0">
+
+                <button type="button"
+                        class="btn btn-light btnCancelarExclusaoAluno"
+                        data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+
+                <button type="button"
+                        id="btnConfirmarExclusaoAluno"
+                        class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can me-1"></i>
+                    Sim, excluir aluno
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>

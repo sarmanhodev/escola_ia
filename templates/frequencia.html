@@ -1,0 +1,36 @@
+{% extends 'base.html' %}{% block titulo %}Frequência{% endblock %}{% block conteudo %}<div class="card mb-4">
+    <div class="card-body">
+        <h5>Registrar presença ou falta</h5>
+        <form method="post" id="formRegistroFrequencia" class="row g-3">
+            <div class=" col-md-4"><label>Aluno</label><select name="aluno_id" class="form-select">{% for a in alunos %}
+                    <option value="{{ a.id }}">{{ a.nome }}</option>{% endfor %}</select></div>
+            <div class=" col-md-3"><label>Data</label><input name="data" type="date" value="{{ hoje }}"
+                    class="form-control" required></div>
+            <div class=" col-md-3"><label>Situação</label><select name="presente" class="form-select">
+                    <option value="1">Presente</option>
+                    <option value="0">Faltou</option>
+                </select></div>
+            <div class=" col-md-2 d-flex align-items-end"><button id="btnSalvarFrequencia"
+                    class="btn btn-primary w-100">Salvar</button></div>
+        </form>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body table-responsive">
+        <table id="tabelaFrequencia" class="table">
+            <thead>
+                <tr>
+                    <th>Aluno</th>
+                    <th>Data</th>
+                    <th>Situação</th>
+                </tr>
+            </thead>
+            <tbody>{% for f in frequencias %}<tr>
+                    <td>{{ f.aluno.nome }}</td>
+                    <td>{{ f.data.strftime('%d/%m/%Y') }}</td>
+                    <td>{% if f.presente %}<span class="badge text-bg-success">Presente</span>{% else %}<span
+                            class="badge text-bg-danger">Falta</span>{% endif %}</td>
+                </tr>{% endfor %}</tbody>
+        </table>
+    </div>
+</div>{% endblock %}

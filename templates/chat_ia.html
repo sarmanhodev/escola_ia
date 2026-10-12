@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Assistente IA{% endblock %}
+
+{% block conteudo %}
+
+<div id="escolaIAChat" class="escolaia-chat">
+
+    <!-- BARRA LATERAL -->
+    <aside class="escolaia-chat-sidebar">
+
+        <div class="escolaia-chat-sidebar-header">
+            <div class="escolaia-chat-logo">
+                <i class="fa-solid fa-brain"></i>
+                <span>EscolaIA</span>
+            </div>
+
+            <button type="button"
+                    id="btnNovaConversaIA"
+                    class="btn btn-outline-primary btnNovaConversaIA">
+                <i class="fa-solid fa-pen-to-square me-2"></i>
+                Nova conversa
+            </button>
+        </div>
+
+        <div class="escolaia-chat-conversas">
+            <h6 class="escolaia-chat-sidebar-titulo">
+                Conversas
+            </h6>
+
+            <div id="listaConversasIA" class="escolaia-chat-lista">
+                <p class="escolaia-chat-sem-conversas">
+                    Nenhuma conversa salva.
+                </p>
+            </div>
+        </div>
+
+        <div class="escolaia-chat-sidebar-footer">
+            <i class="fa-solid fa-microchip me-2"></i>
+            <span>Qwen3 1.7B · Ollama local</span>
+        </div>
+
+    </aside>
+
+    <!-- ÁREA PRINCIPAL -->
+    <section class="escolaia-chat-main">
+
+        <!-- CABEÇALHO -->
+        <header class="escolaia-chat-header">
+
+            <div class="escolaia-chat-header-info">
+                <h5 class="mb-1">
+                    Assistente Inteligente
+                </h5>
+
+                <span class="escolaia-chat-modelo">
+                    <i class="fa-solid fa-circle me-1"></i>
+                    Qwen3 1.7B
+                </span>
+            </div>
+
+
+        </header>
+
+        <!-- HISTÓRICO -->
+        <div id="historicoChatIA" class="escolaia-chat-historico">
+
+            <div id="boasVindasChatIA" class="escolaia-chat-boas-vindas">
+
+                <div class="escolaia-chat-boas-vindas-icone">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+
+                <h3>Como posso ajudar?</h3>
+
+                <p>
+                    Sou o assistente inteligente do EscolaIA.
+                    Faça uma pergunta para começar.
+                </p>
+
+                <div class="escolaia-chat-sugestoes">
+
+                    <button type="button"
+                            class="btnSugestaoPerguntaIA"
+                            data-pergunta="O que é o EscolaIA?">
+                        <i class="fa-solid fa-school"></i>
+                        O que é o EscolaIA?
+                    </button>
+
+                    <button type="button"
+                            class="btnSugestaoPerguntaIA"
+                            data-pergunta="Como posso melhorar a organização escolar?">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        Organização escolar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ÁREA DE DIGITAÇÃO -->
+        <div class="escolaia-chat-composer">
+
+            <div class="escolaia-chat-input-wrapper">
+
+                <textarea id="perguntaChatIA"
+                          class="form-control escolaia-chat-input"
+                          rows="2"
+                          maxlength="2000"
+                          placeholder="Pergunte alguma coisa ao EscolaIA..."></textarea>
+
+                <div class="escolaia-chat-input-footer">
+
+                    <span class="escolaia-chat-input-modelo">
+                        <i class="fa-solid fa-robot me-1"></i>
+                        IA local
+                    </span>
+
+                    <button type="button"
+                            id="btnEnviarPerguntaIA"
+                            class="btn btn-primary btnEnviarPerguntaIA"
+                            title="Enviar mensagem">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <p class="escolaia-chat-aviso">
+                O EscolaIA pode cometer erros.
+                Confira informações importantes.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+{% include "./modais/modalExcluirConversaIA.html" %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% block titulo %}Visão geral{% endblock %}{% block conteudo %}<div class="row">{% for
+    rotulo,valor in [('Alunos',alunos),('Turmas',turmas),('Notas lançadas',notas),('Alunos com média abaixo de
+    6',abaixo)] %}<div class="col-md-6 col-lg-3 mb-3">
+        <div class="card painel">
+            <div class="card-body">
+                <p class="text-muted mb-2">{{ rotulo }}</p>
+                <h2>{{ valor }}</h2>
+            </div>
+        </div>
+    </div>{% endfor %}</div>
+<div class="alert alert-info">Os dados são fictícios. A média exibida considera somente as notas já lançadas e não
+    determina reprovação.</div>{% endblock %}
