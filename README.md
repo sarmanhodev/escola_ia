@@ -124,7 +124,7 @@ As consultas são processadas de acordo com as intenções e os parâmetros reco
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/SEU_USUARIO/escola_ia.git
+git clone https://github.com/sarmanhodev/escola_ia.git
 cd escola_ia
 ```
 
