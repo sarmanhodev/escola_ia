@@ -1,12 +1,13 @@
 from datetime import date
 from flask import Flask, flash, redirect, render_template, request, url_for, jsonify
-from sqlalchemy import func
+from sqlalchemy import func, cast, Integer
 from sqlalchemy.exc import SQLAlchemyError
 from config import Config
 from models import db, Aluno, Turma, Nota, Frequencia, ConversaIA, MensagemIA
-from services.ollama_service import interpretar_diagnostico_pedagogico
+from services.ollama_service import perguntar_ia, interpretar_diagnostico_pedagogico
 import requests
 from functions import *
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -304,6 +305,13 @@ def chat_ia():
         historico = recuperar_historico_ia(conversa.id) if conversa is not None else []
         consulta_escolar = identificar_consulta_escolar_contextual(
             pergunta=pergunta, historico=historico
+        )
+        
+        app.logger.info(
+            "DEBUG ESCOLAIA | Pergunta: %r | Normalizada: %r | Consulta: %r",
+            pergunta,
+            normalizar_pergunta_escolar(pergunta),
+            consulta_escolar
         )
 
         if consulta_escolar is not None:
@@ -720,9 +728,40 @@ def frequencia_alunos_ia():
         )
 
 
+@app.route("/debug/disciplinas")
+def debug_disciplinas():
+    from sqlalchemy import func
+    from models import Nota, db
+
+    resultados = (
+        db.session.query(Nota.disciplina, func.count(Nota.id).label("quantidade"))
+        .group_by(Nota.disciplina)
+        .order_by(Nota.disciplina)
+        .all()
+    )
+
+    return {
+        "disciplinas": [
+            {"nome": item.disciplina, "quantidade_notas": item.quantidade}
+            for item in resultados
+        ]
+    }
+
+
+@app.route("/debug/consulta-notas")
+def debug_consulta_notas():
+    from functions import identificar_consulta_escolar
+
+    pergunta = "Qual turma possui a maior média em Matemática?"
+
+    consulta = identificar_consulta_escolar(pergunta)
+
+    return {"pergunta": pergunta, "consulta_identificada": consulta}
+
+
 with app.app_context():
     db.create_all()
     seed()
 
 if __name__ == "__main__":
-    app.run(debug=False, host="127.0.0.1", port=5000)
+    app.run(debug=True, host="127.0.0.1", port=5000)
