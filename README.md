@@ -140,6 +140,7 @@ escola_ia/
 │   ├── __init__.py
 │   └── ollama_service.py
 ├── static/
+├── docs/
 ├── templates/
 ├── app.py
 ├── config.py
